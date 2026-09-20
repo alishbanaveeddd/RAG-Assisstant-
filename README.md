@@ -8,11 +8,65 @@ conservative in the face of the KB's **intentional contradictions and outdated
 documents**, cites every KB-backed claim, and **escalates to a human instead of
 guessing**.
 
+## TL;DR / Quick start
+
+```bash
+pip install -r requirements.txt          # numpy, sentence-transformers, pytest, groq
+python -m pytest tests -q                # 297 offline tests, ~20 s (no API key needed)
+python -m learnforge.cli --provider fake --once "What is the refund policy?"   # offline demo
+python -m learnforge.evaluation          # 28-case behavioral benchmark, ~2 s
+```
+
+*Fully offline by default; the real LLM (`--provider real`) is optional and needs
+`GROQ_API_KEY`. See [Setup & running](#setup--running) and the table of contents below.*
+
 The guiding principle of the whole design:
 
 > **The LLM is only a language generator. It never decides whether the evidence
 > is trustworthy — a deterministic evidence-assessment layer does that.**
 > **Conversation history is contextual input, not knowledge-base evidence.**
+
+![Python](https://img.shields.io/badge/python-3.11%2B-blue)
+![Tests](https://img.shields.io/badge/tests-297%20passing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-green)
+[![tests](https://github.com/alishbanaveeddd/RAG-Assisstant-/actions/workflows/tests.yml/badge.svg)](https://github.com/alishbanaveeddd/RAG-Assisstant-/actions/workflows/tests.yml)
+
+## Table of contents
+
+- [TL;DR / Quick start](#tldr--quick-start)
+- [Features](#features)
+- [Architecture diagram](#architecture-diagram)
+- [Data schema diagram](#data-schema-diagram)
+- [How routing, safety and escalation work](#how-routing-safety-and-escalation-work)
+- [Example interaction](#example-interaction)
+- [Setup & running](#setup--running)
+- [Configuration](#configuration)
+- [Tests — what is tested and what it tells you](#tests--what-is-tested-and-what-it-tells-you)
+- [Evaluation benchmark & results](#evaluation-benchmark--results)
+- [Failure handling summary](#failure-handling-summary)
+- [Trade-offs (why X over Y)](#trade-offs-why-x-over-y)
+- [Troubleshooting](#troubleshooting)
+- [Limitations](#limitations)
+- [Repo layout & documentation](#repo-layout--documentation)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- **Hybrid retrieval** — local semantic embeddings (`all-MiniLM-L6-v2`, CPU) fused
+  with Okapi BM25 via Reciprocal Rank Fusion; no external embedding API.
+- **Deterministic evidence gate** — six routing states, categorical confidence
+  with exposed components, seven known contradiction families, PII/security
+  detection, escalation signalling — all before any LLM call.
+- **Grounded generation** — evidence-delimited prompts, prompt-injection
+  defence, citation enforcement (only approved record IDs citable), structured
+  provider-failure handling.
+- **Bounded multi-turn context** — deterministic query preparation, session
+  isolation, reset; history is never evidence and never a citation source.
+- **Full offline reproducibility** — 297 tests + a 28-case evaluation benchmark
+  that run with no network and no API key.
+- **Explicit failure behavior** — no retries, no fallback providers, no invented
+  answers; every failure is a structured, explainable result.
 
 ## What this is about
 
@@ -172,6 +226,44 @@ exposed — never a pseudo-calibrated probability. Payment credentials (CVV,
 card numbers, passwords, auth codes) are never solicited. Failed turns are
 never recorded into history and never produce fabricated answers.
 
+## Example interaction
+
+Real pipeline output from the CLI (`--provider fake --show-details`; the answer
+text is the fake provider's canned reply — with `--provider real` the Groq LLM
+writes the grounded, cited answer; state/routing/retrieval are identical
+because they never depend on the LLM):
+
+```text
+$ python -m learnforge.cli --provider fake --show-details --once "Can I get a refund after 20 days?"
+
+  prepared query : Can I get a refund after 20 days?
+  state/routing  : conflicting_evidence / escalate (confidence: low)
+  retrieved      : TICKET-03, TICKET-08, POLICY-02, FAQ-02, TICKET-06
+  evidence       : TICKET-03, TICKET-08, POLICY-02, FAQ-02, TICKET-06
+  conflicts      : refund_window          <- 7-day (archived) vs 14-day (current)
+                                             vs 30-day historical claim
+  escalation     : required
+assistant: (offline fake-provider response: no LLM was called)
+```
+
+Note what the system does **not** do: it does not silently pick 7, 14, or 30
+days. It surfaces the conflict, marks the archived wording as stale, keeps the
+historical ticket as evidence (never as policy), and escalates.
+
+```text
+$ python -m learnforge.cli --provider fake --show-details --once "Can I send support my CVV?"
+
+  state/routing  : security_escalation / escalate (confidence: low)
+  conflicts      : payment_data_collection
+  security       : triggered
+```
+
+```text
+$ python -m learnforge.cli --provider fake --show-details --once "xyzabc qwerty 123456"
+
+  state/routing  : insufficient_evidence / decline (confidence: low)
+```
+
 ## Setup & running
 
 ```bash
@@ -202,6 +294,18 @@ Notes:
   retrieval** — embeddings are computed locally.
 * `--provider real` without `GROQ_API_KEY` exits with explicit guidance; the CLI
   never silently substitutes the fake provider. `.env` files are gitignored.
+
+## Configuration
+
+| Environment variable | Required for | Purpose |
+|---|---|---|
+| `GROQ_API_KEY` | `--provider real` only | Groq free-tier API key. Read from the environment at runtime; never hard-coded, logged, or committed. |
+| `LEARNFORGE_ALLOW_MODEL_DOWNLOAD` | optional | The embedding stack defaults to offline mode (`HF_HUB_OFFLINE=1`); set this to `1` to allow downloading `all-MiniLM-L6-v2` on first run. |
+
+CLI flags: `--provider real|fake`, `--once QUERY`, `--k N` (retrieval depth),
+`--records PATH`, `--embeddings PATH`, `--show-details`, `--json`,
+`--fake-response TEXT`, `--fake-error TYPE` (offline failure demos).
+Session commands: `:reset`, `:details`, `:quit`.
 
 ## Tests — what is tested and what it tells you
 
@@ -312,6 +416,36 @@ docs/evaluation.md             benchmark methodology + results (M7)
 
 Each milestone document lists its design decisions, parameters, and explicit
 assumptions; `docs/architecture.md` is the root.
+
+## Troubleshooting
+
+| Symptom | Cause / fix |
+|---|---|
+| First run is slow or tries to reach `huggingface.co` | The embedding model (~90 MB) downloads once into the local HF cache. Pre-download it, or set `LEARNFORGE_ALLOW_MODEL_DOWNLOAD=1`; afterwards everything runs offline. |
+| `Embedding store model mismatch` | `data/processed/kb_embeddings.json` was built with a different model — regenerate with `python -m learnforge.embed`. |
+| `No API key found. Set the GROQ_API_KEY environment variable` | You used `--provider real` without a key. Export one, or re-run with `--provider fake` for an offline demo. The CLI never silently swaps providers. |
+| Tests fail to import `sentence_transformers` | Run `pip install -r requirements.txt` in the same interpreter/venv you invoke pytest with. |
+| CRLF warnings from git | Cosmetic line-ending notices on Windows; safe to ignore. |
+
+## Contributing
+
+This is a take-home assignment prototype, so large changes aren't expected —
+but issues and suggestions are welcome. If you do contribute: keep tests
+offline and deterministic (the suite must never require an API key), never
+commit secrets, and don't modify the supplied KB files in
+`learnforge-knowledge-base-data/` (they are the immutable evaluation source).
+
+## License
+
+Released under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- Knowledge-base sample data (FAQs, policies, tickets) supplied with the
+  **Applied AI/LLM Engineer take-home assignment**.
+- Embeddings: [`sentence-transformers/all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) (local, CPU).
+- LLM: [Groq](https://groq.com/) free tier (`llama-3.3-70b-versatile`).
+
 
 
 
