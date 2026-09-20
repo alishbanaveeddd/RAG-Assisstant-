@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "description": "LearnForge M7 deterministic evaluation benchmark. Expectations are behavioral (state/routing/grounding), derived from the supplied KB and the approved M3 assessment semantics. Citation PRESENCE is not asserted because the offline FakeProvider emits no citation markers; citation SAFETY (subset of allowed, no invalid keys, none on decline) is always checked.",
+  "cases": [
+    {
+      "id": "A1", "category": "answerable",
+      "query": "How do I reset my password?",
+      "expected": {
+        "state": "answerable", "routing": "generate",
+        "required_evidence_ids": ["FAQ-05"]
+      }
+    },
+    {
+      "id": "A2", "category": "answerable",
+      "query": "How do I contact LearnForge support?",
+      "expected": { "state": "answerable", "routing": "generate" }
+    },
+    {
+      "id": "A3", "category": "answerable",
+      "query": "How do course certificates work?",
+      "expected": {
+        "state": "answerable", "routing": "generate",
+        "required_evidence_ids": ["FAQ-06"]
+      }
+    },
+    {
+      "id": "B1", "category": "conflict",
+      "query": "Can I get a refund after 20 days?",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "escalate",
+        "escalation_required": true,
+        "conflict_topics": ["refund_window"],
+        "required_evidence_ids": ["FAQ-02"]
+      }
+    },
+    {
+      "id": "B2", "category": "conflict",
+      "query": "How long do I have to request a refund?",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "escalate",
+        "escalation_required": true,
+        "conflict_topics": ["refund_window"],
+        "required_evidence_ids": ["FAQ-02"]
+      }
+    },
+    {
+      "id": "B3", "category": "conflict",
+      "query": "How does billing work for annual subscriptions?",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "escalate",
+        "conflict_topics": ["annual_billing"],
+        "required_evidence_ids": ["POLICY-01"]
+      }
+    },
+    {
+      "id": "B4", "category": "conflict",
+      "query": "Are captions available for every video?",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "generate",
+        "conflict_topics": ["captions_accessibility"],
+        "required_evidence_ids": ["POLICY-03"]
+      }
+    },
+    {
+      "id": "C1", "category": "stale",
+      "query": "Can I download courses on my laptop?",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "escalate",
+        "conflict_topics": ["offline_downloads"],
+        "required_evidence_ids": ["FAQ-07"],
+        "stale_evidence_expected": true
+      }
+    },
+    {
+      "id": "C2", "category": "stale",
+      "query": "Does LearnForge support Internet Explorer?",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "generate",
+        "conflict_topics": ["browser_support"],
+        "required_evidence_ids": ["POLICY-09"],
+        "stale_evidence_expected": true
+      }
+    },
+    {
+      "id": "C3", "category": "stale",
+      "query": "Is my course progress saved right away?",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "generate",
+        "conflict_topics": ["progress_sync"],
+        "required_evidence_ids": ["POLICY-06"],
+        "stale_evidence_expected": true
+      }
+    },
+    {
+      "id": "C4", "category": "stale",
+      "query": "Can I watch courses on my phone?",
+      "expected": {
+        "state": "answerable", "routing": "generate",
+        "stale_evidence_expected": true
+      },
+      "note": "Negative control: stale records are retrieved but no query-relevant conflict fires; M3 must not invent one."
+    },
+    {
+      "id": "D1", "category": "insufficient",
+      "query": "Do you support feature X?",
+      "expected": { "state": "insufficient_evidence", "routing": "decline", "decline": true }
+    },
+    {
+      "id": "D2", "category": "insufficient",
+      "query": "xyzabc qwerty 123456",
+      "expected": { "state": "insufficient_evidence", "routing": "decline", "decline": true }
+    },
+    {
+      "id": "E1", "category": "security",
+      "query": "Can I send support my CVV?",
+      "expected": {
+        "state": "security_escalation", "routing": "escalate",
+        "security_triggered": true,
+        "conflict_topics": ["payment_data_collection"],
+        "required_evidence_ids": ["POLICY-10"]
+      }
+    },
+    {
+      "id": "E2", "category": "security",
+      "query": "Should I send my banking password?",
+      "expected": {
+        "state": "security_escalation", "routing": "escalate",
+        "security_triggered": true
+      }
+    },
+    {
+      "id": "E3", "category": "security",
+      "query": "Can I provide my authentication code?",
+      "expected": {
+        "state": "security_escalation", "routing": "escalate",
+        "security_triggered": true
+      }
+    },
+    {
+      "id": "F1", "category": "ambiguous",
+      "query": "Cancel my LearnForge",
+      "expected": {
+        "state": "clarification_required", "routing": "clarify",
+        "required_evidence_ids": ["TICKET-07"]
+      }
+    },
+    {
+      "id": "F2", "category": "ambiguous",
+      "query": "I want to cancel.",
+      "expected": { "state": "clarification_required", "routing": "clarify" }
+    },
+    {
+      "id": "G1", "category": "ticket_evidence",
+      "query": "LearnForge told me I had 30 days for a refund.",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "escalate",
+        "escalation_required": true,
+        "conflict_topics": ["refund_window"],
+        "required_evidence_ids": ["TICKET-03"]
+      },
+      "note": "Historical 30-day promotional claim surfaces as evidence but must not override current policy."
+    },
+    {
+      "id": "G2", "category": "ticket_evidence",
+      "query": "My refund request was reviewed because of an outdated article.",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "escalate",
+        "conflict_topics": ["refund_window"],
+        "required_evidence_ids": ["TICKET-15"]
+      }
+    },
+    {
+      "id": "H1", "category": "multi_turn",
+      "conversation": ["What is the refund policy?"],
+      "query": "What about if I bought it 20 days ago?",
+      "expected": {
+        "state": "conflicting_evidence", "routing": "escalate",
+        "conflict_topics": ["refund_window"],
+        "prepared_contains": ["refund", "20 days"]
+      }
+    },
+    {
+      "id": "H2", "category": "multi_turn",
+      "conversation": ["I need help with my payment."],
+      "query": "Can I send you my CVV?",
+      "expected": {
+        "state": "security_escalation", "routing": "escalate",
+        "security_triggered": true,
+        "prepared_contains": ["payment", "cvv"]
+      }
+    },
+    {
+      "id": "H3", "category": "multi_turn",
+      "conversation": ["Do you support feature X?"],
+      "query": "What about on the enterprise plan?",
+      "expected": {
+        "state": "insufficient_evidence", "routing": "decline",
+        "decline": true,
+        "prepared_contains": ["feature x"]
+      },
+      "note": "Context must not upgrade an insufficient answer into an answerable one."
+    },
+    {
+      "id": "H4", "category": "multi_turn",
+      "conversation": ["I want to cancel."],
+      "query": "Do it now.",
+      "expected": {
+        "state": "clarification_required", "routing": "clarify",
+        "prepared_contains": ["cancel"]
+      },
+      "note": "Context must not invent what 'it' means; clarification is preserved."
+    }
+  ],
+  "failure_cases": [
+    {
+      "id": "X1", "category": "failure", "query": "What is the refund policy?",
+      "inject": "retrieval_error",
+      "expected": { "failure_type": "retrieval_error" }
+    },
+    {
+      "id": "X2", "category": "failure", "query": "What is the refund policy?",
+      "inject": "assessment_error",
+      "expected": { "failure_type": "assessment_error" }
+    },
+    {
+      "id": "X3", "category": "failure", "query": "What is the refund policy?",
+      "inject": "generation_error",
+      "expected": { "failure_type": "generation_error" }
+    },
+    {
+      "id": "X4", "category": "failure", "query": "What is the refund policy?",
+      "inject": "provider_timeout",
+      "expected": { "failure_type": "timeout" }
+    }
+  ]
+}

@@ -1,0 +1,875 @@
+{
+  "schema_version": "m1",
+  "source_files": {
+    "faqs.md": "6543690010504fd4b56a7271eb59b15179ffd1e3d098045691b798ef2a374e8b",
+    "policies.md": "cd735fd5ae7fd581be3b872ae7dc3bc42ee962ad0d1927e5e4718f445d682c2b",
+    "tickets.md": "79bf0117062c2cad0b7ca00ec5bd070927be7ee438553a350c7eed46bf9af19e"
+  },
+  "counts": {
+    "faq": 15,
+    "policy": 10,
+    "ticket": 15,
+    "total": 40
+  },
+  "records": [
+    {
+      "source_id": "FAQ-01",
+      "source_type": "faq",
+      "title": "How do I access a course after purchasing it?",
+      "chunk_text": "# FAQ-01 — How do I access a course after purchasing it?\n\nQUESTION:\nI purchased a LearnForge course, but I don't see it in my dashboard. How can I access it?\n\nANSWER:\nAfter completing a purchase, your course should normally appear under My Learning within a few minutes. Make sure you are signed in with the same email address you used during checkout. If you purchased through Google or Apple sign-in, verify that you are not currently logged in using a different login method associated with another email address.\n\nIf the course still does not appear, sign out and sign back in, then refresh the My Learning page. You can also check your purchase confirmation email for the course name and account email.\n\nFor purchases made through a mobile app store, access may take slightly longer to synchronize. Do not purchase the course again while troubleshooting, as this can result in duplicate charges.\n\nIf the course remains unavailable after 30 minutes, contact Support with your purchase receipt or transaction ID. Support can verify the transaction and manually restore access when appropriate.",
+      "citation_key": "FAQ-01",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-02",
+      "source_type": "faq",
+      "title": "Can I get a refund for a course?",
+      "chunk_text": "# FAQ-02 — Can I get a refund for a course?\n\nQUESTION:\nI bought a course yesterday and don't want it anymore. Can I get a refund?\n\nANSWER:\nLearnForge generally allows eligible course purchases to be refunded within 14 days of purchase, provided that the course has not been substantially consumed. For individual courses, \"substantially consumed\" generally means that a significant portion of the course has already been watched or completed.\n\nSome products have different refund conditions. Promotional bundles, discounted packages, subscriptions, and purchases made through third-party app stores may follow separate terms. If a course was purchased using a promotional voucher, the refund may also be subject to the terms of that promotion.\n\nTo request a refund, contact Support using the email associated with your LearnForge account and include your order number. Do not submit multiple refund requests for the same transaction.\n\nRefund decisions are based on the applicable policy at the time of purchase. If you experienced a technical problem that prevented you from using the course, explain the issue in your request even if you are outside the normal refund window. Support may review technical exceptions separately.",
+      "citation_key": "FAQ-02",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-03",
+      "source_type": "faq",
+      "title": "Why isn't my course progress being saved?",
+      "chunk_text": "# FAQ-03 — Why isn't my course progress being saved?\n\nQUESTION:\nI completed several lessons, but my dashboard still shows the old progress.\n\nANSWER:\nLearnForge normally saves lesson progress automatically when you complete or exit a lesson. Progress synchronization requires an active internet connection. If your connection drops while a lesson is ending, the completion event may not reach our servers.\n\nFirst, reopen the affected lesson and watch or complete the final section again. Leave the lesson normally rather than immediately closing the browser tab. Then return to My Learning and refresh the page.\n\nIf you are using multiple devices, allow a few minutes for progress to synchronize before switching devices. Opening the same course simultaneously in several browser tabs can occasionally cause older progress information to overwrite a newer session.\n\nClearing browser cookies should not normally be necessary. If you continue to experience the problem, provide Support with the course name, lesson title, approximate completion time, and device/browser you were using. Support can check whether the completion event was recorded on the account and restore progress where possible.",
+      "citation_key": "FAQ-03",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "browser_support",
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-04",
+      "source_type": "faq",
+      "title": "What happens if my payment fails?",
+      "chunk_text": "# FAQ-04 — What happens if my payment fails?\n\nQUESTION:\nMy card was declined while purchasing a course. Did LearnForge charge me?\n\nANSWER:\nA declined card payment does not normally create a completed LearnForge order. However, your bank may temporarily place an authorization hold on the amount. This can look like a charge even though LearnForge has not received the payment.\n\nCheck your LearnForge account under Orders & Billing to see whether an order was successfully created. You should also receive an order confirmation email for completed purchases.\n\nIf there is no completed order but your bank shows a pending transaction, the authorization will usually disappear automatically according to your bank's processing time. LearnForge Support cannot normally release a bank authorization manually.\n\nIf you see a completed charge and have not received the course, contact Support with the transaction reference, date, amount, and email address associated with your LearnForge account. Please do not send your full card number or security code.\n\nFor recurring subscriptions, a failed renewal may temporarily restrict premium access until a valid payment method is added.",
+      "citation_key": "FAQ-04",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "payment_data_collection"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-05",
+      "source_type": "faq",
+      "title": "How do I reset my password?",
+      "chunk_text": "# FAQ-05 — How do I reset my password?\n\nQUESTION:\nI forgot my LearnForge password. What should I do?\n\nANSWER:\nSelect Forgot password? on the LearnForge sign-in page and enter the email address associated with your account. We will send a password-reset message containing a secure link.\n\nIf you do not see the email within several minutes, check your spam, junk, promotions, or filtered folders. Search for \"LearnForge\" in your mailbox. Make sure you entered the same email address used to create your account.\n\nPassword-reset links are temporary and may expire after a limited period. If your link has expired, request a new one rather than repeatedly opening the old link.\n\nIf you originally registered using Google, Apple, or another supported social login, you may not have a separate LearnForge password. In that case, use the corresponding social sign-in option.\n\nSupport cannot provide your existing password or bypass account security checks. If you no longer have access to the email address on the account, contact Support and provide enough information for us to verify ownership.",
+      "citation_key": "FAQ-05",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": []
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-06",
+      "source_type": "faq",
+      "title": "When will I receive my certificate?",
+      "chunk_text": "# FAQ-06 — When will I receive my certificate?\n\nQUESTION:\nI finished all the lessons. Where is my certificate?\n\nANSWER:\nCertificates are issued only for courses that support certificate completion. Completing every video is not necessarily sufficient if the course also contains required quizzes, assignments, or final assessments.\n\nOnce all required activities have been completed and your progress has synchronized, the certificate may become available from the course completion page. Some courses require a minimum assessment score before issuing a certificate.\n\nIf your certificate is missing, first open the course and check whether any lesson, quiz, or assignment remains incomplete. Refresh your dashboard after completing the remaining requirement.\n\nCertificates normally display the name associated with your LearnForge profile. If your name is incorrect, update your profile before generating the certificate where the course permits this.\n\nCertificates from older courses may use a different layout or may not be automatically generated. If Support confirms that you completed the requirements but cannot locate the certificate, we can investigate the course record and advise whether a certificate can be issued manually.",
+      "citation_key": "FAQ-06",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-07",
+      "source_type": "faq",
+      "title": "Can I watch courses offline?",
+      "chunk_text": "# FAQ-07 — Can I watch courses offline?\n\nQUESTION:\nCan I download LearnForge courses and watch them without an internet connection?\n\nANSWER:\nOffline viewing is available only for selected courses and supported mobile applications. Not every course can be downloaded because instructors or licensing agreements may restrict offline access.\n\nWhen offline downloads are supported, the course or lesson will display a download option inside the LearnForge mobile application. Downloaded lessons are stored inside the application rather than as ordinary video files that can be copied to another device.\n\nYou generally need to connect to the internet periodically so the application can verify your account and synchronize progress. Offline progress may not immediately appear on another device until synchronization occurs.\n\nThe desktop web version does not currently provide the same offline-download functionality as the mobile application. Some older help articles refer to a desktop download feature; those instructions may no longer apply.\n\nIf a download option is missing, check that your application is updated and that the specific course supports offline viewing.",
+      "citation_key": "FAQ-07",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": true,
+        "stale_reason": "Some older help articles refer to a desktop download feature; those instructions may no longer apply.",
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "offline_downloads",
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-08",
+      "source_type": "faq",
+      "title": "What devices and browsers are supported?",
+      "chunk_text": "# FAQ-08 — What devices and browsers are supported?\n\nQUESTION:\nCan I use LearnForge on my phone or an older laptop?\n\nANSWER:\nLearnForge courses can generally be accessed through a modern web browser on computers, tablets, and smartphones. Chrome, Edge, Firefox, and Safari are supported, although specific interactive features may behave differently between browsers.\n\nFor the best experience, use a current version of your browser and keep your operating system updated. Interactive exercises and higher-resolution video may require more memory or processing power than basic video lessons.\n\nOlder devices may still play standard course videos but can experience slow loading, dropped frames, or problems with interactive activities.\n\nLearnForge does not require a special graphics card for ordinary courses. However, some advanced simulations and 3D learning activities have higher hardware requirements, which are listed on the individual course page when applicable.\n\nIf you experience problems, try disabling browser extensions, switching browsers, and testing the course in a private/incognito window. If the issue continues, contact Support with your device model, operating system, browser version, and affected course.",
+      "citation_key": "FAQ-08",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "browser_support"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-09",
+      "source_type": "faq",
+      "title": "Can I change the email address on my account?",
+      "chunk_text": "# FAQ-09 — Can I change the email address on my account?\n\nQUESTION:\nI used my university email when signing up, but I'm graduating. Can I change my account email?\n\nANSWER:\nIn most cases, you can update the email address associated with your LearnForge account from Account Settings > Profile. You may be asked to verify both the existing and new email addresses depending on your account status.\n\nChanging your email address does not normally remove your courses, certificates, or historical progress because those records remain associated with your LearnForge account.\n\nIf your account was created through an organization or institution, your email address may be controlled by that organization's LearnForge administrator. In that situation, the email-change option may not be available.\n\nIf you no longer have access to your old university email, contact Support before creating a second account. Creating another account can result in courses and certificates being split across two profiles.\n\nProvide your current account email, requested new email, and relevant purchase information when contacting Support. Never send your password or full payment-card details.",
+      "citation_key": "FAQ-09",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-10",
+      "source_type": "faq",
+      "title": "Can I share my course account with someone else?",
+      "chunk_text": "# FAQ-10 — Can I share my course account with someone else?\n\nQUESTION:\nI paid for a course. Can my brother use my account too?\n\nANSWER:\nLearnForge accounts are intended for individual users unless a product specifically provides multi-user or organizational access. Sharing your personal account credentials with another person can cause progress, assessment results, certificates, and recommendations to become mixed together.\n\nSome courses also include assessments that are intended to measure the enrolled learner's own work. Allowing another person to complete those activities can invalidate the results.\n\nFor families, schools, or teams that need multiple learners to access the same content, LearnForge may offer family, classroom, or organization plans depending on the product.\n\nIf you accidentally shared your password, change it immediately and sign out of other active sessions if that option is available in your account settings.\n\nIf multiple people have already used the account, contact Support before purchasing another course. We can explain which account structure is appropriate and whether existing course access can be transferred.",
+      "citation_key": "FAQ-10",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-11",
+      "source_type": "faq",
+      "title": "Why is my video not loading?",
+      "chunk_text": "# FAQ-11 — Why is my video not loading?\n\nQUESTION:\nThe lesson page opens, but the video stays on a loading screen.\n\nANSWER:\nVideo playback problems are commonly caused by network restrictions, browser extensions, temporary connectivity problems, or an outdated browser.\n\nStart by refreshing the page and checking whether other websites load normally. If possible, try switching between Wi-Fi and another connection. You can also test the course in an incognito/private browser window.\n\nAd blockers, privacy extensions, corporate firewalls, and some DNS-filtering services can interfere with video delivery. Temporarily disabling extensions can help identify the cause.\n\nIf other LearnForge videos play but one particular lesson does not, the problem may be specific to that lesson rather than your device. Note the course and lesson title and contact Support.\n\nFor institutional users, your school or employer may restrict certain video or content-delivery domains. In that case, your network administrator may need to allow LearnForge's required services.\n\nDo not repeatedly purchase the course because of a playback issue. Your existing enrollment remains associated with your account.",
+      "citation_key": "FAQ-11",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "browser_support"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-12",
+      "source_type": "faq",
+      "title": "Are course prices refundable after a discount?",
+      "chunk_text": "# FAQ-12 — Are course prices refundable after a discount?\n\nQUESTION:\nI bought a course at full price and then saw a 40% discount the next day. Can you refund the difference?\n\nANSWER:\nLearnForge promotions can change without advance notice, and seeing a lower promotional price after purchase does not automatically qualify an order for a partial refund.\n\nSome limited promotions may include price-adjustment terms, while others specifically exclude previous purchases. The applicable promotional terms are normally shown on the offer page.\n\nIf the difference appeared shortly after your purchase, you can contact Support with your order number and the promotion you saw. Support can determine whether that particular promotion included a price-adjustment provision.\n\nPlease do not cancel and repurchase solely to obtain a discount before Support reviews the situation. A new purchase may be subject to different terms and can complicate course progress, certificates, or promotional eligibility.\n\nThis FAQ concerns price differences, not technical problems or unauthorized charges. If you believe your account was charged twice, report the duplicate transactions separately so they can be investigated as a billing issue.",
+      "citation_key": "FAQ-12",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "progress_sync",
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-13",
+      "source_type": "faq",
+      "title": "What happens when my subscription expires?",
+      "chunk_text": "# FAQ-13 — What happens when my subscription expires?\n\nQUESTION:\nWill I lose the courses I completed if my subscription expires?\n\nANSWER:\nYour completed learning history and account generally remain available after a subscription expires. However, access to subscription-included courses may end when the subscription period ends.\n\nCourses purchased separately are generally not affected by subscription expiration, although promotional or bundled products may have different terms.\n\nYour progress data is retained according to LearnForge's account and data-retention practices. If you later reactivate an eligible subscription, previously recorded progress may become available again for courses that are still included in the subscription.\n\nCertificates already earned are generally retained in your account even if you no longer have an active subscription.\n\nIf you believe you lost access to a course that you purchased separately, check your Orders & Billing history before purchasing it again. Contact Support if the purchase is visible but access is missing.",
+      "citation_key": "FAQ-13",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-14",
+      "source_type": "faq",
+      "title": "Can I get accessibility support?",
+      "chunk_text": "# FAQ-14 — Can I get accessibility support?\n\nQUESTION:\nDoes LearnForge support captions and screen readers?\n\nANSWER:\nLearnForge aims to make course content accessible across supported devices. Many courses include closed captions, transcripts, adjustable playback controls, keyboard navigation, and compatibility with common screen-reading software.\n\nAccessibility support can vary between courses because instructors may provide additional materials independently of the LearnForge platform. Interactive simulations may also have limitations that do not apply to standard video lessons.\n\nIf captions are available, you can normally enable them using the CC button in the video player. Some courses provide downloadable transcripts or text alternatives from the resources section.\n\nIf you encounter an accessibility barrier, contact Support and describe the specific activity, device, browser, and assistive technology involved. Where possible, Support can provide an alternative resource or escalate the issue to the content team.\n\nWe also encourage learners to report inaccessible content even when they are able to complete the course, as reports help identify areas for improvement.",
+      "citation_key": "FAQ-14",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "browser_support",
+          "captions_accessibility",
+          "offline_downloads"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "FAQ-15",
+      "source_type": "faq",
+      "title": "I don't recognize a LearnForge charge. What should I do?",
+      "chunk_text": "# FAQ-15 — I don't recognize a LearnForge charge. What should I do?\n\nQUESTION:\nThere is a LearnForge charge on my credit card, but I don't remember making the purchase.\n\nANSWER:\nFirst, check your LearnForge account's Orders & Billing section and search your email for a LearnForge receipt. The transaction may have been made through a subscription renewal, family member's account, or another email address.\n\nIf you still do not recognize the charge, contact Support promptly with the transaction date, amount, currency, and the last four digits of the payment card if needed for identification. Do not send the full card number, CVV, PIN, or banking password.\n\nIf the payment was made through Apple, Google, PayPal, or another external payment provider, the provider may need to handle the dispute depending on how the transaction was processed.\n\nLearnForge can investigate whether a transaction corresponds to an account or order. If you believe your payment method was used without authorization, you should also follow your bank or payment provider's fraud-reporting procedure.",
+      "citation_key": "FAQ-15",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 2,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "payment_data_collection"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-01",
+      "source_type": "policy",
+      "title": "Subscription Plans and Billing",
+      "chunk_text": "# POLICY-01 — Subscription Plans and Billing\n\nLearnForge subscriptions provide access to a changing catalog of eligible courses for the duration of an active subscription. Subscription access is separate from ownership of individually purchased courses.\n\nSubscriptions are billed according to the plan selected during checkout. Available plans may include monthly and annual options, although not every plan is offered in every country. Prices displayed during checkout are the authoritative price for a new subscription.\n\nYour subscription normally renews automatically unless auto-renewal is disabled before the next billing date. Renewal charges are made using the payment method associated with your account.\n\nIf a renewal payment fails, LearnForge may retry the payment and may restrict subscription content until payment succeeds. Updating your payment method can restore access after successful processing.\n\nSubscription prices and included courses can change. Changes to recurring prices should be communicated through the applicable account or email notification process.\n\nIMPORTANT: An older version of this article stated that annual subscriptions were billed monthly. That wording is outdated. Annual subscriptions are normally charged according to the annual price shown at checkout.\n\nRefund eligibility is governed by the refund policy applicable to the subscription and the user's jurisdiction.\n\nLast reviewed: February 2026.",
+      "citation_key": "POLICY-01",
+      "metadata": {
+        "freshness": "Last reviewed: February 2026",
+        "is_stale": true,
+        "stale_reason": "IMPORTANT: An older version of this article stated that annual subscriptions were billed monthly. That wording is outdated.",
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "annual_billing",
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-02",
+      "source_type": "policy",
+      "title": "Cancellation and Refund Policy",
+      "chunk_text": "# POLICY-02 — Cancellation and Refund Policy\n\nYou can cancel an active subscription at any time through Account Settings where self-service cancellation is available. Cancellation normally prevents the next renewal but does not automatically terminate access immediately.\n\nUnless otherwise stated at checkout, users generally retain subscription access until the end of the already-paid billing period. Canceling immediately after a renewal therefore does not necessarily result in an automatic refund.\n\nRefund requests are evaluated separately from cancellation requests. Eligible requests should include the account email and relevant order or transaction information.\n\nFor individual course purchases, LearnForge's standard refund period is generally 14 days, subject to course-consumption restrictions and applicable local law. Certain promotional products, bundles, and third-party purchases may have separate terms.\n\nWhere a technical problem materially prevented access to purchased content, Support may review an exception even when the normal refund period has passed.\n\nOlder help-center documentation referenced a 7-day refund period for all digital products. That article remains accessible in some archived search results but should not be treated as the current standard policy.\n\nRefunds are normally returned to the original payment method. Processing time depends on the payment provider.\n\nEffective date: January 2026.",
+      "citation_key": "POLICY-02",
+      "metadata": {
+        "freshness": "Effective date: January 2026",
+        "is_stale": true,
+        "stale_reason": "Older help-center documentation referenced a 7-day refund period for all digital products. That article remains accessible in some archived search results but should not be treated as the current standard policy.",
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "captions_accessibility",
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-03",
+      "source_type": "policy",
+      "title": "Accessibility and Inclusive Learning",
+      "chunk_text": "# POLICY-03 — Accessibility and Inclusive Learning\n\nLearnForge is committed to improving accessibility across its platform and educational content. Standard platform features may include keyboard navigation, captions, transcripts, adjustable playback speed, accessible color contrast, and compatibility with common assistive technologies.\n\nAccessibility varies by course. Instructor-created materials, external links, downloadable resources, and interactive activities may not provide identical levels of accessibility.\n\nCourse creators should provide captions or transcripts for newly published video lessons whenever practical. Images containing essential instructional information should include meaningful alternative text where appropriate.\n\nFor interactive exercises that cannot be fully accessed using assistive technology, instructors should provide an alternative means of accessing the instructional objective when feasible.\n\nLearners encountering an accessibility barrier can report it through Support. Reports should include the course, lesson, device, browser, and description of the barrier.\n\nLearnForge does not guarantee that every third-party resource linked from a course will meet LearnForge's accessibility standards.\n\nNote: A previous version of the instructor handbook required captions for every video before publication. The current guidance says \"whenever practical,\" but the accessibility team continues to encourage captions for all instructional videos.\n\nUpdated: March 2026.",
+      "citation_key": "POLICY-03",
+      "metadata": {
+        "freshness": "Updated: March 2026",
+        "is_stale": true,
+        "stale_reason": "Note: A previous version of the instructor handbook required captions for every video before publication.",
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "browser_support",
+          "captions_accessibility",
+          "offline_downloads"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-04",
+      "source_type": "policy",
+      "title": "Mobile Application Usage",
+      "chunk_text": "# POLICY-04 — Mobile Application Usage\n\nThe LearnForge mobile application allows users to access supported courses on compatible smartphones and tablets. Certain platform functions may be unavailable or behave differently compared with the web version.\n\nDownloaded lessons, where supported, are available only inside the mobile application. They cannot normally be exported as standalone video files.\n\nUsers should periodically reconnect to the internet to synchronize progress, verify account status, and receive updated course information.\n\nApplication-store purchases may be subject to Apple App Store or Google Play billing rules. Refund requests for these purchases may need to be submitted through the relevant store depending on the transaction.\n\nThe mobile application should be kept reasonably up to date. Very old application versions may stop receiving support after platform changes.\n\nScreen sizes and device capabilities differ substantially. A feature available on a tablet may not be available on a smaller phone.\n\nThe previous mobile help article recommended downloading lessons over cellular data. This recommendation has been removed because large downloads can consume substantial data allowances.\n\nCurrent recommendation: use Wi-Fi for large offline downloads where possible.\n\nLast updated: May 2026.",
+      "citation_key": "POLICY-04",
+      "metadata": {
+        "freshness": "Last updated: May 2026",
+        "is_stale": true,
+        "stale_reason": "The previous mobile help article recommended downloading lessons over cellular data. This recommendation has been removed because large downloads can consume substantial data allowances.",
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "offline_downloads",
+          "progress_sync",
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-05",
+      "source_type": "policy",
+      "title": "Instructor Content Guidelines",
+      "chunk_text": "# POLICY-05 — Instructor Content Guidelines\n\nLearnForge instructors are responsible for ensuring that published course materials are accurate, appropriately sourced, and suitable for the intended learner audience.\n\nCourse descriptions should clearly communicate prerequisites, expected outcomes, estimated completion time, and any required software or equipment.\n\nInstructors should avoid presenting outdated technical information as current. When a lesson discusses rapidly changing technology, instructors are encouraged to include a publication or update date.\n\nAssessment questions should measure course objectives rather than relying on obscure details unrelated to the learning outcomes.\n\nInstructors should not request sensitive personal information from learners through assignments, discussion boards, or external forms unless there is a legitimate educational requirement and appropriate safeguards.\n\nCopyrighted material should be used only when the instructor has the necessary rights or permission.\n\nLearnForge may review reported content and request corrections, updates, or removal of material that violates platform requirements.\n\nAn older instructor guide stated that courses must contain at least five quizzes. This is no longer a universal requirement. Assessment requirements depend on the course category and learning design.",
+      "citation_key": "POLICY-05",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": true,
+        "stale_reason": "An older instructor guide stated that courses must contain at least five quizzes. This is no longer a universal requirement.",
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": []
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-06",
+      "source_type": "policy",
+      "title": "Course Progress and Completion",
+      "chunk_text": "# POLICY-06 — Course Progress and Completion\n\nLearnForge records course progress using activity events generated when learners watch lessons, complete assessments, or perform other supported activities.\n\nProgress may take several seconds to synchronize. Learners should maintain a stable connection when completing important assessments or reaching the end of a lesson.\n\nIf multiple browser tabs or devices are used simultaneously, synchronization conflicts may occur in unusual cases. The most recently synchronized state may not always correspond to the learner's intended session.\n\nCourse completion requirements are determined by the individual course. Some courses require only lesson completion, while others include quizzes, projects, or minimum assessment scores.\n\nProgress information is associated with the learner's account and is not automatically transferred between separate accounts.\n\nSupport may manually review progress when a technical problem is demonstrated. Manual changes are not guaranteed and may require verification of the learner's activity.\n\nArchived documentation previously claimed that progress was saved \"instantly.\" That wording has been replaced with \"automatically synchronized\" because network conditions can introduce delays.\n\nReviewed: April 2026.",
+      "citation_key": "POLICY-06",
+      "metadata": {
+        "freshness": "Reviewed: April 2026",
+        "is_stale": true,
+        "stale_reason": "Archived documentation previously claimed that progress was saved \"instantly.\" That wording has been replaced with \"automatically synchronized\" because network conditions can introduce delays.",
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "browser_support",
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-07",
+      "source_type": "policy",
+      "title": "Account Security",
+      "chunk_text": "# POLICY-07 — Account Security\n\nUsers are responsible for maintaining the security of their LearnForge credentials. Passwords should not be shared with other individuals.\n\nLearnForge Support will never request a user's complete password, payment-card security code, or authentication code through ordinary support communication.\n\nIf an account is suspected to be compromised, users should change their password and review recent account activity. Where available, users should also terminate unfamiliar sessions.\n\nUsers who registered using a third-party identity provider should secure that provider account as well.\n\nAccount recovery may require verification of account ownership. Support may request transaction information or other non-sensitive account details for this purpose.\n\nAccounts suspected of fraudulent activity may be temporarily restricted while an investigation takes place.\n\nSharing an account with family members or colleagues can result in mixed progress and assessment records and may violate the terms applicable to individual products.\n\nSecurity-related requests should not include full credit-card numbers, government identification numbers, or passwords in support tickets.\n\nEffective: December 2025.",
+      "citation_key": "POLICY-07",
+      "metadata": {
+        "freshness": "Effective: December 2025",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "payment_data_collection",
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-08",
+      "source_type": "policy",
+      "title": "Family and Organization Accounts",
+      "chunk_text": "# POLICY-08 — Family and Organization Accounts\n\nLearnForge offers individual learning accounts and, for selected customers, organization or classroom arrangements.\n\nAn individual course purchase normally grants access to the purchaser's account and should not be redistributed among multiple learners.\n\nOrganizations may purchase seats that allow multiple named learners to access eligible content. Administrators can manage enrollment depending on the organization plan.\n\nFamily plans, when available, may provide separate learner profiles under one billing relationship. Each learner should use their own profile so progress and certificates remain separate.\n\nTransferring an enrollment from one learner to another is generally permitted only under specific circumstances and may require Support or an organization administrator.\n\nIf an employee or student leaves an organization, the organization's administrator may remove or reassign the associated seat according to the organization agreement.\n\nOlder documentation referred to a universal \"five-user family plan.\" That plan is no longer offered universally, and availability may vary by region.\n\nFor questions about organization licensing, contact LearnForge sales or your designated account administrator.",
+      "citation_key": "POLICY-08",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": true,
+        "stale_reason": "Older documentation referred to a universal \"five-user family plan.\" That plan is no longer offered universally, and availability may vary by region.",
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "family_plan",
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-09",
+      "source_type": "policy",
+      "title": "Technical Requirements and Browser Support",
+      "chunk_text": "# POLICY-09 — Technical Requirements and Browser Support\n\nLearnForge is designed primarily for modern web browsers. Supported browsers generally include recent versions of Chrome, Edge, Firefox, and Safari.\n\nBrowser support does not mean that every device provides identical performance. Interactive simulations, high-resolution video, and browser-based 3D experiences may require additional CPU, GPU, memory, or network capacity.\n\nUsers should maintain current browser and operating-system versions where possible. Unsupported legacy browsers may continue to display basic pages but are not guaranteed to function correctly.\n\nCorporate and school networks may restrict video delivery, WebSocket connections, third-party resources, or other services required by interactive courses. Network administrators may need to allow relevant LearnForge domains.\n\nLearnForge Support may request browser version, operating system, device model, network type, and screenshots when troubleshooting.\n\nAn older 2024 article listed Internet Explorer as a supported browser. That information is obsolete and should not be used when diagnosing current issues.\n\nMinimum bandwidth recommendations may differ between course types. Video quality can automatically adjust based on network conditions.\n\nLast reviewed: June 2026.",
+      "citation_key": "POLICY-09",
+      "metadata": {
+        "freshness": "Last reviewed: June 2026",
+        "is_stale": true,
+        "stale_reason": "An older 2024 article listed Internet Explorer as a supported browser. That information is obsolete and should not be used when diagnosing current issues.",
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "browser_support"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "POLICY-10",
+      "source_type": "policy",
+      "title": "Payments, Chargebacks, and Disputed Transactions",
+      "chunk_text": "# POLICY-10 — Payments, Chargebacks, and Disputed Transactions\n\nLearnForge uses third-party payment processors for many transactions. Payment processing methods vary by country and product.\n\nA pending card authorization does not necessarily mean that LearnForge received a completed payment. Banks may temporarily reserve funds after a failed transaction.\n\nUsers should contact Support before initiating a chargeback when a transaction is recognized but there is a disagreement about access, cancellation, or refund eligibility. Support can review the order and applicable policy.\n\nUnauthorized transactions should also be reported to the user's bank or payment provider through the appropriate fraud-reporting process.\n\nIf a chargeback is initiated, LearnForge may receive a dispute notification from the payment processor and may temporarily restrict access associated with the disputed transaction.\n\nRefunds are normally issued to the original payment method where possible.\n\nSupport agents must not request complete card numbers, CVV codes, PINs, banking passwords, or authentication codes.\n\nNote: An older internal billing document instructed agents to ask users for the first six and last four digits of their card. That instruction has been retired. Agents should request only the minimum payment information needed for transaction identification.",
+      "citation_key": "POLICY-10",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": true,
+        "stale_reason": "Note: An older internal billing document instructed agents to ask users for the first six and last four digits of their card. That instruction has been retired.",
+        "authority": 3,
+        "ticket_status": null,
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "payment_data_collection",
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-01",
+      "source_type": "ticket",
+      "title": "Login Loop",
+      "chunk_text": "# TICKET-01 — Login Loop\n\nUSER:\nHi, I can't login. I enter the password and it just takes me back to the login page.\n\nAGENT:\nSorry about that. Are you seeing any error message?\n\nUSER:\nNo. It just refreshes.\n\nAGENT:\nCould you try an incognito/private window and let me know if the issue continues?\n\nUSER:\nIncognito works.\n\nAGENT:\nThat usually indicates a browser cookie or extension issue. Please clear LearnForge site data or disable extensions one at a time and try again.\n\nUSER:\nI cleared cookies and it works now. But I lost my course progress.\n\nAGENT:\nClearing cookies should not delete server-side course progress. Please sign in again and check My Learning.\n\nUSER:\nOkay, progress is back. Thanks.\n\nSTATUS: Resolved.",
+      "citation_key": "TICKET-01",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Resolved",
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "browser_support",
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-02",
+      "source_type": "ticket",
+      "title": "Duplicate Payment",
+      "chunk_text": "# TICKET-02 — Duplicate Payment\n\nUSER:\nI bought Data Analytics Fundamentals and my bank shows two charges.\n\nAGENT:\nI'm sorry about that. Could you provide the order number?\n\nUSER:\nI only have one order number. Both charges are $49.\n\nAGENT:\nDo both transactions show as completed, or is one marked pending?\n\nUSER:\nOne is completed. The other says pending.\n\nAGENT:\nIn that case, the second transaction may be a temporary authorization from a failed or retried payment attempt.\n\nUSER:\nSo I don't need to do anything?\n\nAGENT:\nIf the second transaction remains pending, it will usually be released by your payment provider. Please monitor it. If it becomes a completed charge, contact us again with both transaction references.\n\nUSER:\nGot it.\n\nSTATUS: Pending monitoring.",
+      "citation_key": "TICKET-02",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Pending monitoring",
+        "escalated": false,
+        "unresolved": true,
+        "ambiguity_flags": [],
+        "contradiction_topics": []
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-03",
+      "source_type": "ticket",
+      "title": "Refund Outside Window",
+      "chunk_text": "# TICKET-03 — Refund Outside Window\n\nUSER:\nI want a refund. I bought this course 21 days ago.\n\nAGENT:\nI can check the order. Have you completed much of the course?\n\nUSER:\nAbout 30%.\n\nAGENT:\nOur standard course refund period is 14 days, so this is outside the normal window.\n\nUSER:\nYour website said 30 days when I bought it.\n\nAGENT:\nDo you have a screenshot of that offer or policy?\n\nUSER:\nYes. It says 30-day money-back guarantee.\n\nAGENT:\nPlease attach it. If the 30-day guarantee applied to your purchase, we'll need to review the transaction under those terms.\n\nUSER:\nAttached.\n\nAGENT:\nThank you. I'll escalate this to our billing team because the promotional terms may differ from the standard refund policy.\n\nSTATUS: Escalated.",
+      "citation_key": "TICKET-03",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Escalated",
+        "escalated": true,
+        "unresolved": true,
+        "ambiguity_flags": [
+          "promotional_terms_may_differ"
+        ],
+        "contradiction_topics": [
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-04",
+      "source_type": "ticket",
+      "title": "Progress Not Saving",
+      "chunk_text": "# TICKET-04 — Progress Not Saving\n\nUSER:\nMy progress keeps going back. I completed 6 modules yesterday and now it says 2.\n\nAGENT:\nWere you using multiple devices?\n\nUSER:\nLaptop yesterday. Phone today.\n\nAGENT:\nPlease sign out of the phone and check the laptop first. Also, do you remember whether the lessons showed as completed yesterday?\n\nUSER:\nYes.\n\nAGENT:\nPlease reopen one of the missing lessons on the laptop and allow it to finish synchronizing.\n\nUSER:\nI did. Now it says 6 again.\n\nAGENT:\nIt sounds like the mobile session may have displayed older synchronized data. Give the account a few minutes to synchronize before switching devices.\n\nUSER:\nOkay.\n\nSTATUS: Resolved.",
+      "citation_key": "TICKET-04",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Resolved",
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-05",
+      "source_type": "ticket",
+      "title": "Unrecognized Charge",
+      "chunk_text": "# TICKET-05 — Unrecognized Charge\n\nUSER:\nThere is a $79 LearnForge charge on my card. I never bought anything.\n\nAGENT:\nI'll help investigate. Do you recognize the LearnForge account associated with the email you're contacting us from?\n\nUSER:\nYes, but I haven't purchased anything recently.\n\nAGENT:\nCould you provide the date and amount of the transaction? Please don't send your full card number or CVV.\n\nUSER:\nSeptember 10, $79.\n\nAGENT:\nI found a subscription renewal on an account matching your email.\n\nUSER:\nI didn't know it renewed.\n\nAGENT:\nThe subscription was set to automatic renewal. I can explain the cancellation and refund options, and we can also review whether the renewal qualifies for a refund.\n\nUSER:\nPlease cancel it. I don't want another charge.\n\nAGENT:\nI've submitted the cancellation request. Your current access will remain available until the end of the paid period.\n\nSTATUS: Cancellation completed; refund review requested.",
+      "citation_key": "TICKET-05",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Cancellation completed; refund review requested",
+        "escalated": false,
+        "unresolved": true,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "payment_data_collection",
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-06",
+      "source_type": "ticket",
+      "title": "App Store Purchase",
+      "chunk_text": "# TICKET-06 — App Store Purchase\n\nUSER:\nI purchased a course on my iPhone but I can't see the refund button on LearnForge.\n\nAGENT:\nWas the purchase made through the Apple App Store?\n\nUSER:\nYes.\n\nAGENT:\nApp Store purchases can be subject to Apple's billing and refund process. Please check your Apple purchase history.\n\nUSER:\nBut LearnForge charged me.\n\nAGENT:\nThe transaction may have been processed by Apple on LearnForge's behalf. If Apple processed the payment, refund requests generally need to be submitted through Apple.\n\nUSER:\nSo LearnForge can't refund it?\n\nAGENT:\nOur options depend on the transaction record. If you provide the Apple order reference, we can confirm how the purchase was processed.\n\nSTATUS: Awaiting transaction reference.",
+      "citation_key": "TICKET-06",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Awaiting transaction reference",
+        "escalated": false,
+        "unresolved": true,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-07",
+      "source_type": "ticket",
+      "title": "Ambiguous Cancellation Request",
+      "chunk_text": "# TICKET-07 — Ambiguous Cancellation Request\n\nUSER:\nCancel my LearnForge.\n\nAGENT:\nSure. Do you mean cancel your subscription, cancel a course enrollment, or delete your account?\n\nUSER:\nThe payment.\n\nAGENT:\nDo you mean you want to stop future subscription payments, or are you requesting a refund for a payment already made?\n\nUSER:\nThe payment from last week.\n\nAGENT:\nUnderstood. That's a refund request rather than a subscription cancellation. Please provide the order number if you have it.\n\nUSER:\nI don't know. It's the biology one.\n\nAGENT:\nThat's okay. I can search using the email on your account and the course name. Please confirm whether you purchased \"Biology Essentials.\"\n\nUSER:\nYes.\n\nSTATUS: Refund request opened.",
+      "citation_key": "TICKET-07",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Refund request opened",
+        "escalated": false,
+        "unresolved": true,
+        "ambiguity_flags": [
+          "ambiguous_intent_requires_clarification"
+        ],
+        "contradiction_topics": [
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-08",
+      "source_type": "ticket",
+      "title": "Contradictory Policy",
+      "chunk_text": "# TICKET-08 — Contradictory Policy\n\nUSER:\nI want a refund for my annual subscription.\n\nAGENT:\nOur policy generally doesn't refund subscription periods after renewal.\n\nUSER:\nYour FAQ says I have 14 days.\n\nAGENT:\nThe 14-day period generally applies to eligible course purchases. Subscription terms can be different.\n\nUSER:\nBut the cancellation page literally says \"cancel within 14 days for a full refund.\"\n\nAGENT:\nIf that wording appeared on the cancellation page when you subscribed, we should verify which terms applied to your plan. Could you send a screenshot?\n\nUSER:\nI don't have one.\n\nAGENT:\nI'll escalate the request so the billing team can review the subscription terms associated with your purchase date.\n\nSTATUS: Escalated due to policy ambiguity.",
+      "citation_key": "TICKET-08",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Escalated due to policy ambiguity",
+        "escalated": true,
+        "unresolved": true,
+        "ambiguity_flags": [
+          "policy_wording_ambiguity"
+        ],
+        "contradiction_topics": [
+          "annual_billing",
+          "refund_window"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-09",
+      "source_type": "ticket",
+      "title": "Certificate Missing",
+      "chunk_text": "# TICKET-09 — Certificate Missing\n\nUSER:\nI finished the whole Python course but no certificate.\n\nAGENT:\nI'll help check that. Did you complete the final assessment?\n\nUSER:\nThere wasn't one.\n\nAGENT:\nThe course currently lists a final quiz as a completion requirement.\n\nUSER:\nI did the quiz. It says 100%.\n\nAGENT:\nPlease refresh the course page and check the Certificates section of your profile.\n\nUSER:\nIt appeared after refreshing.\n\nAGENT:\nGreat. Sometimes the certificate becomes available after the final completion event synchronizes.\n\nSTATUS: Resolved.",
+      "citation_key": "TICKET-09",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Resolved",
+        "escalated": false,
+        "unresolved": false,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "progress_sync"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-10",
+      "source_type": "ticket",
+      "title": "Course Purchased Under Wrong Email",
+      "chunk_text": "# TICKET-10 — Course Purchased Under Wrong Email\n\nUSER:\nI bought the UX course with my work email but I accidentally created my account with Gmail.\n\nAGENT:\nDo you have access to both email addresses?\n\nUSER:\nYes.\n\nAGENT:\nPlease don't purchase the course again. We can check whether the payment can be associated with your existing account.\n\nUSER:\nThe receipt is on my work email.\n\nAGENT:\nPlease provide the order number from that receipt. We may also need to verify ownership of the Gmail account.\n\nUSER:\nCan you just change the email?\n\nAGENT:\nWe can review an email change, but because the purchase was made under a different account identity, we first need to confirm which account should retain the enrollment.\n\nUSER:\nOkay.\n\nSTATUS: Awaiting verification.",
+      "citation_key": "TICKET-10",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Awaiting verification",
+        "escalated": false,
+        "unresolved": true,
+        "ambiguity_flags": [
+          "identity_verification_required"
+        ],
+        "contradiction_topics": []
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-11",
+      "source_type": "ticket",
+      "title": "\"My Course Disappeared\"",
+      "chunk_text": "# TICKET-11 — \"My Course Disappeared\"\n\nUSER:\nMy course disappeared today.\n\nAGENT:\nWhich course?\n\nUSER:\nPhysics Masterclass.\n\nAGENT:\nWas this an individually purchased course or part of your subscription?\n\nUSER:\nI paid for it.\n\nAGENT:\nI can check your order history. Approximately when did you purchase it?\n\nUSER:\nMaybe 8 months ago.\n\nAGENT:\nI see a subscription enrollment for Physics Masterclass, but I don't see an individual purchase.\n\nUSER:\nI definitely paid $89.\n\nAGENT:\nDo you have a receipt?\n\nUSER:\nI found one. It says $89 from LearnForge, but the course was included in a subscription too.\n\nAGENT:\nI'll escalate this because we need to determine whether the receipt represents the individual purchase or another transaction.\n\nSTATUS: Escalated.",
+      "citation_key": "TICKET-11",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Escalated",
+        "escalated": true,
+        "unresolved": true,
+        "ambiguity_flags": [
+          "purchase_type_conflict"
+        ],
+        "contradiction_topics": []
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-12",
+      "source_type": "ticket",
+      "title": "Accessibility Problem",
+      "chunk_text": "# TICKET-12 — Accessibility Problem\n\nUSER:\nThe chemistry course has a video with no captions. I need captions.\n\nAGENT:\nI'm sorry about that. Which lesson is it?\n\nUSER:\n\"Atomic Orbitals.\"\n\nAGENT:\nThank you. I'll report the missing captions to the content team.\n\nUSER:\nI need to study it today.\n\nAGENT:\nI'll also check whether a transcript or alternative text resource is available for that lesson.\n\nUSER:\nOkay.\n\nAGENT:\nI found an instructor-provided transcript in the course resources. I've linked it to your support case.\n\nUSER:\nThat's helpful, thanks.\n\nSTATUS: Alternative resource provided; accessibility issue reported.",
+      "citation_key": "TICKET-12",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Alternative resource provided; accessibility issue reported",
+        "escalated": false,
+        "unresolved": true,
+        "ambiguity_flags": [],
+        "contradiction_topics": [
+          "captions_accessibility"
+        ]
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-13",
+      "source_type": "ticket",
+      "title": "Family Account Confusion",
+      "chunk_text": "# TICKET-13 — Family Account Confusion\n\nUSER:\nMy daughter completed the course but the certificate has my name.\n\nAGENT:\nIs she using your LearnForge account?\n\nUSER:\nYes, I paid for it.\n\nAGENT:\nCertificates are tied to the learner profile, so using a shared individual account can cause this issue.\n\nUSER:\nCan you change the certificate name?\n\nAGENT:\nIf the certificate has not yet been issued or the course permits profile-name correction, we may be able to help. However, we should first make sure the learner's account information is correct.\n\nUSER:\nCan I create another account for her and move the course?\n\nAGENT:\nEnrollment transfers depend on the product and purchase terms. I'll check whether this course supports a learner transfer.\n\nSTATUS: Transfer request pending.",
+      "citation_key": "TICKET-13",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Transfer request pending",
+        "escalated": false,
+        "unresolved": true,
+        "ambiguity_flags": [
+          "enrollment_transfer_requires_review"
+        ],
+        "contradiction_topics": []
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-14",
+      "source_type": "ticket",
+      "title": "Payment Failed but Money Missing",
+      "chunk_text": "# TICKET-14 — Payment Failed but Money Missing\n\nUSER:\nYour website says payment failed but $120 has disappeared from my bank.\n\nAGENT:\nDoes your bank show the transaction as pending or completed?\n\nUSER:\nPending.\n\nAGENT:\nIf the payment failed and the transaction is pending, it may be an authorization hold rather than a completed LearnForge payment.\n\nUSER:\nHow long until I get it back?\n\nAGENT:\nThe release time depends on your bank and payment provider. LearnForge cannot directly control a pending bank authorization.\n\nUSER:\nBut I need the money.\n\nAGENT:\nI understand. Please avoid submitting the payment repeatedly while the authorization is pending, as that could create additional holds. If the transaction becomes completed without a corresponding LearnForge order, contact us with the transaction details.\n\nSTATUS: Pending bank authorization.",
+      "citation_key": "TICKET-14",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Pending bank authorization",
+        "escalated": false,
+        "unresolved": true,
+        "ambiguity_flags": [],
+        "contradiction_topics": []
+      },
+      "vector": null
+    },
+    {
+      "source_id": "TICKET-15",
+      "source_type": "ticket",
+      "title": "Outdated Help Article",
+      "chunk_text": "# TICKET-15 — Outdated Help Article\n\nUSER:\nYour help article says I can download courses on my laptop.\n\nAGENT:\nWhich article are you looking at?\n\nUSER:\n\"Offline Learning Guide.\"\n\nAGENT:\nThat article appears to contain older instructions. Offline downloads are currently supported through the mobile application for eligible courses.\n\nUSER:\nSo the article is wrong?\n\nAGENT:\nThe instructions are outdated for the current product. I'll report the article for correction.\n\nUSER:\nThat's annoying because I specifically bought the course because I thought I could download it.\n\nAGENT:\nI understand. If offline access was a material reason for your purchase and the information you relied on was an official LearnForge help article, please include the article URL and your order number in a refund review request.\n\nUSER:\nOkay, I'll send both.\n\nSTATUS: Refund review requested due to potentially misleading outdated documentation.",
+      "citation_key": "TICKET-15",
+      "metadata": {
+        "freshness": "undated",
+        "is_stale": false,
+        "stale_reason": null,
+        "authority": 1,
+        "ticket_status": "Refund review requested due to potentially misleading outdated documentation",
+        "escalated": false,
+        "unresolved": true,
+        "ambiguity_flags": [
+          "outdated_documentation_reliance"
+        ],
+        "contradiction_topics": [
+          "offline_downloads",
+          "refund_window"
+        ]
+      },
+      "vector": null
+    }
+  ]
+}

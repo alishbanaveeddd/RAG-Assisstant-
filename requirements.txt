@@ -1,0 +1,15 @@
+# LearnForge support assistant (prototype) — Python 3.12+
+#
+# Retrieval (M2) uses a locally-run embedding model; no external embedding API
+# and no API key are required. `torch` and `transformers` are installed as
+# transitive dependencies of `sentence-transformers`.
+numpy>=2.0
+sentence-transformers>=5.0
+
+# Test framework (official for this project)
+pytest>=8.0
+
+# Grounded generation (M4) — free-tier LLM provider SDK.
+# Requires an API key in the environment variable GROQ_API_KEY (never commit it).
+# The test suite uses an in-memory fake provider, so no key is needed to run tests.
+groq>=1.0
