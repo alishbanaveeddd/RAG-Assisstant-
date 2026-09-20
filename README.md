@@ -427,6 +427,8 @@ assumptions; `docs/architecture.md` is the root.
 | Tests fail to import `sentence_transformers` | Run `pip install -r requirements.txt` in the same interpreter/venv you invoke pytest with. |
 | CRLF warnings from git | Cosmetic line-ending notices on Windows; safe to ignore. |
 
+## System Design Diagram
+<img width="4171" height="7290" alt="system_design_diagram" src="https://github.com/user-attachments/assets/50504fe9-49f8-45e4-afbf-91f9d0e92359" />
 ## Contributing
 
 This is a take-home assignment prototype, so large changes aren't expected —
