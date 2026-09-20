@@ -28,7 +28,7 @@ The guiding principle of the whole design:
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![Tests](https://img.shields.io/badge/tests-297%20passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
-[![tests](https://github.com/alishbanaveeddd/RAG-Assisstant-/actions/workflows/tests.yml/badge.svg)](https://github.com/alishbanaveeddd/RAG-Assisstant-/actions/workflows/tests.yml)
+
 
 ## Table of contents
 
