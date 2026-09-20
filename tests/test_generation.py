@@ -810,3 +810,31 @@ def test_result_metadata_exposes_provider_and_model_without_secrets():
     assert "gsk_" not in blob
     assert "api_key" not in blob
     assert "authorization" not in blob
+
+
+def test_failure_fallback_after_security_turn_is_not_security():
+    """A non-security turn must never fall back to the CVV/security message."""
+    browser = make_assessment(
+        "What browsers are supported?",
+        ANSWERABLE,
+        ROUTE_GENERATE,
+        [EvidenceItem(**evidence_item_kwargs("FAQ-08", "LearnForge supports modern browsers."))],
+    )
+    message = safe_failure_message(browser)
+    assert message == FAILURE_FALLBACKS[ANSWERABLE]
+    assert "cvv" not in message.lower()
+
+    # a genuine security assessment still uses the security fallback
+    security = make_assessment(
+        "Can I send you my CVV?",
+        SECURITY_ESCALATION,
+        ROUTE_ESCALATE,
+        [],
+        security=SecurityAssessment(
+            triggered=True,
+            matched_terms=["cvv"],
+            rule="query names sensitive payment/identity data",
+            evidence_ids_with_pii_rules=[],
+        ),
+    )
+    assert "cvv" in safe_failure_message(security).lower()

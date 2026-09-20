@@ -324,11 +324,17 @@ class IngestionError(Exception):
 
 
 def read_source_file(path: str) -> tuple[str, str]:
-    """Read a source file read-only, returning ``(normalized_text, sha256)``."""
+    """Read a source file read-only, returning ``(normalized_text, sha256)``.
+
+    The hash is computed from the newline-normalized text (not raw bytes) so the
+    integrity check is platform-stable: a CRLF working-tree copy on Windows hashes
+    identically to the LF-stored source.
+    """
     with open(path, "rb") as handle:
         raw = handle.read()
-    sha = hashlib.sha256(raw).hexdigest()
-    return normalize_newlines(raw.decode("utf-8")), sha
+    normalized_text = normalize_newlines(raw.decode("utf-8"))
+    sha = hashlib.sha256(normalized_text.encode("utf-8")).hexdigest()
+    return normalized_text, sha
 
 
 def ingest_all(

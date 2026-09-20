@@ -9,7 +9,7 @@
 | Item | Value |
 |---|---|
 | Provider | **Groq** (free tier) |
-| Model | `llama-3.3-70b-versatile` |
+| Model | `openai/gpt-oss-120b` |
 | API-key environment variable | **`GROQ_API_KEY`** |
 | SDK | `groq>=1.0` (already a declared dependency; imported lazily) |
 | Endpoint | `https://api.groq.com` |

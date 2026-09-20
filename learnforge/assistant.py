@@ -32,7 +32,12 @@ from typing import Any, Callable, Optional, Sequence
 
 from learnforge.conversation import Conversation, new_conversation, validate_message
 from learnforge.embed import DEFAULT_EMBEDDINGS_PATH, DEFAULT_RECORDS_PATH
-from learnforge.evidence import EvidenceAssessment, assess_evidence
+from learnforge.evidence import (
+    EvidenceAssessment,
+    assess_evidence,
+    detect_query_topics,
+    detect_security,
+)
 from learnforge.generation import GenerationResult, generate
 from learnforge.retrieval import DEFAULT_TOP_K, Retriever
 
@@ -46,6 +51,20 @@ MODE_ERROR = "error"
 ERROR_RETRIEVAL = "retrieval_error"
 ERROR_ASSESSMENT = "assessment_error"
 ERROR_GENERATION = "generation_error"
+
+
+def _is_security_sensitive(text: str) -> bool:
+    """True when M3 considers ``text`` to name sensitive payment/identity data.
+
+    Used to keep such turns out of carried conversation context, so a prior
+    security turn (e.g. a CVV question) cannot re-trigger M3's security state or
+    leak into later, unrelated turns. Never raises: a filtering fault must not
+    break an otherwise valid turn.
+    """
+    try:
+        return detect_security(text)[0]
+    except Exception:  # pragma: no cover - defensive
+        return False
 
 
 @dataclass
@@ -248,7 +267,14 @@ class Assistant:
         turn_count = self._conversation.turn_count
 
         # STEP 2 - M5 query preparation (bounded history; deterministic; no LLM).
-        prepared_query = self._conversation.prepare_query(message)
+        # Security-sensitive prior turns are never carried forward, so a previous
+        # CVV/payment question cannot poison retrieval or re-trigger M3's security
+        # state on a later, unrelated turn. Prior context is also dropped when the
+        # current question names a topic disjoint from it (a clearly new topic must
+        # not inherit an unrelated previous topic).
+        prepared_query = self._conversation.prepare_query(
+            message, exclude=_is_security_sensitive, topics_of=detect_query_topics
+        )
 
         # STEP 3 - M2 retrieval against the KB only.
         try:
@@ -277,7 +303,11 @@ class Assistant:
                 prepared_query,
                 assessment,
                 provider=self._provider,
-                conversation_block=self._conversation.build_context_block(),
+                conversation_block=self._conversation.build_context_block(
+                    exclude=_is_security_sensitive,
+                    query=message,
+                    topics_of=detect_query_topics,
+                ),
             )
         except Exception as exc:
             return self._error_result(

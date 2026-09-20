@@ -37,7 +37,7 @@ API_KEY_ENV_VAR = "GROQ_API_KEY"
 
 DEFAULT_PROVIDER = "groq"
 #: Groq-hosted, free-tier, open-weights model with strong instruction following.
-DEFAULT_MODEL = "llama-3.3-70b-versatile"
+DEFAULT_MODEL = "openai/gpt-oss-120b"
 
 DEFAULT_MAX_TOKENS = 700
 #: Deterministic-ish decoding for grounded, low-variance support answers.

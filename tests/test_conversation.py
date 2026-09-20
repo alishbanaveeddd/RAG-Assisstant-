@@ -478,3 +478,113 @@ def test_pipeline_insufficient_produces_no_fabricated_citations(retriever):
         assert cite.startswith(("FAQ-", "POLICY-", "TICKET-"))
 
 
+# ---- Security content must never become carried context ---- #
+
+
+def test_prepare_query_excludes_security_sensitive_history():
+    """A prior CVV turn is dropped from the carried context of a later turn."""
+    from learnforge.evidence import detect_security
+
+    c = new_conversation()
+    c.add_user("what's cvv can u give me my cvv")
+    c.add_assistant("For your safety, please don't share CVV/CVC codes.")
+
+    prepared = c.prepare_query(
+        "What browsers are supported?",
+        exclude=lambda message: detect_security(message)[0],
+    )
+
+    # the sensitive prior turn is not carried forward ...
+    assert "cvv" not in prepared.lower()
+    # ... but the current question is always kept verbatim.
+    assert prepared.endswith("What browsers are supported?")
+
+
+def test_prepare_query_without_exclude_still_carries_benign_topics():
+    """Regression guard: the exclusion predicate must not drop benign context."""
+    from learnforge.evidence import detect_security
+
+    c = new_conversation()
+    c.add_user("What is the refund policy?")
+    c.add_assistant("Refunds follow the policy.")
+
+    prepared = c.prepare_query(
+        "What about 20 days?",
+        exclude=lambda message: detect_security(message)[0],
+    )
+
+    assert "refund" in prepared.lower()
+    assert "20 days" in prepared
+
+
+def test_context_block_excludes_security_sensitive_turns():
+    """The model-visible context block must not contain the prior CVV exchange."""
+    from learnforge.evidence import detect_security
+
+    c = new_conversation()
+    c.add_user("What is the refund policy?")
+    c.add_assistant("Refunds follow the policy.")
+    c.add_user("Can I send you my CVV?")
+    c.add_assistant("For your safety, never share card numbers, CVV/CVC codes or PINs.")
+
+    block = c.build_context_block(exclude=lambda text: detect_security(text)[0])
+
+    assert "cvv" not in block.lower()
+    assert "card numbers" not in block.lower()
+    # benign history survives, and the block stays properly delimited
+    assert block.startswith("<conversation_context>")
+    assert block.endswith("</conversation_context>")
+    assert "refund policy" in block.lower()
+
+
+# ---- New topics must not inherit unrelated context ---- #
+
+
+def test_new_topic_question_drops_unrelated_context():
+    """A question naming a new topic must not inherit unrelated prior context."""
+    from learnforge.evidence import detect_query_topics
+
+    c = new_conversation()
+    c.add_user("can i download courses on my laptop?")
+    c.add_assistant("Downloads are covered by the offline-access policy.")
+
+    prepared = c.prepare_query("what browsers are supported?", topics_of=detect_query_topics)
+
+    # the laptop/download turn is a different topic: nothing is carried
+    assert prepared == "what browsers are supported?"
+    assert "download" not in prepared.lower()
+    assert "laptop" not in prepared.lower()
+
+
+def test_related_topic_followup_still_carries_context():
+    """A related follow-up keeps the prior topic (refund -> 'after 20 days')."""
+    from learnforge.evidence import detect_query_topics
+
+    c = new_conversation()
+    c.add_user("What is the refund policy?")
+    c.add_assistant("Refunds follow the policy.")
+
+    prepared = c.prepare_query("what about after 20 days?", topics_of=detect_query_topics)
+
+    assert "refund" in prepared.lower()
+    assert "20 days" in prepared
+
+
+def test_current_query_is_never_dropped_by_context_gating():
+    """Gating applies to prior context only: the current query always survives."""
+    from learnforge.evidence import detect_query_topics, detect_security
+
+    c = new_conversation()
+    c.add_user("What browsers are supported?")
+    c.add_assistant("Chrome, Edge, Firefox and Safari.")
+
+    prepared = c.prepare_query(
+        "Can I send you my CVV?",
+        exclude=lambda message: detect_security(message)[0],
+        topics_of=detect_query_topics,
+    )
+
+    assert "cvv" in prepared.lower()
+    assert prepared.strip().endswith("Can I send you my CVV?")
+
+

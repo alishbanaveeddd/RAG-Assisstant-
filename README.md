@@ -42,6 +42,7 @@ The guiding principle of the whole design:
 - [Configuration](#configuration)
 - [Tests — what is tested and what it tells you](#tests--what-is-tested-and-what-it-tells-you)
 - [Evaluation benchmark & results](#evaluation-benchmark--results)
+- [Real Groq live testing](#real-groq-live-testing)
 - [Failure handling summary](#failure-handling-summary)
 - [Trade-offs (why X over Y)](#trade-offs-why-x-over-y)
 - [Troubleshooting](#troubleshooting)
@@ -85,7 +86,7 @@ retrieved first. This project demonstrates the engineering that prevents that:
    states (`answerable`, `clarification_required`, `insufficient_evidence`,
    `conflicting_evidence`, `escalation_required`, `security_escalation`) and
    detects the KB's seven known contradiction families.
-4. **Grounded generation** (Groq, `llama-3.3-70b-versatile`, free tier) may only
+4. **Grounded generation** (Groq, `openai/gpt-oss-120b`, free tier) may only
    use the evidence M3 approved, must cite supplied record IDs, treats KB text
    as data (prompt-injection defence), and follows M3's routing.
 5. **Multi-turn context** is bounded, deterministic, and never authoritative.
@@ -355,6 +356,32 @@ responses (citation *presence* is only observable with a real provider, because
 `FakeProvider` deliberately emits no citation markers). Methodology:
 `docs/evaluation.md`.
 
+## Real Groq live testing
+
+The automated test suite and evaluation benchmark are **fully offline** and use
+`FakeProvider` exclusively (no API key required). The **real** Groq provider
+(`--provider real`) is exercised separately as a manual smoke test against the
+actual Groq API.
+
+- Run offline: `python -m pytest tests -q` and `python -m learnforge.evaluation`.
+- Run live (manual): `python -m learnforge.cli --provider real --once "..."`
+  (or a multi-turn session). The `GROQ_API_KEY` environment variable **is
+  required**; the CLI never silently swaps the real provider for the fake one.
+
+Live smoke testing was performed manually against the real Groq provider and
+verified the following behaviors end-to-end:
+
+| Scenario | Outcome |
+|---|---|
+| Security-sensitive CVV question | Correctly escalates (does not answer / asks for human help). |
+| Topic separation after a security escalation turn | A new unrelated question (e.g. browser support) is treated as a fresh topic and retrieves the relevant browser evidence, rather than mixing in the prior CVV/security context. |
+| Laptop/download evidence handling | The "can I download courses on my laptop?" query returns grounded download-policy evidence with correct citations. |
+| Browser-support retrieval | The "what browsers are supported?" query retrieves browser-support evidence and cites the approved KB record IDs. |
+
+**Scope distinction:** the 308 automated pytest tests and 28 evaluation cases all
+run offline via `FakeProvider` and do not call Groq. Only the manual
+`--provider real` smoke test above hits the live Groq API.
+
 ## Failure handling summary
 
 | Situation | Behavior |
@@ -452,7 +479,7 @@ Released under the [MIT License](LICENSE).
 - Knowledge-base sample data (FAQs, policies, tickets) supplied with the
   **Applied AI/LLM Engineer take-home assignment**.
 - Embeddings: [`sentence-transformers/all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) (local, CPU).
-- LLM: [Groq](https://groq.com/) free tier (`llama-3.3-70b-versatile`).
+- LLM: [Groq](https://groq.com/) free tier (`openai/gpt-oss-120b`).
 
 
 

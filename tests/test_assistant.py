@@ -173,7 +173,7 @@ def test_result_carries_upstream_structured_data():
         citations_used=["FAQ-02"],
         allowed_citations=["FAQ-02", "POLICY-02"],
         provider="groq",
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
     )
     bot = make_assistant(assessor=FakeAssessor(assessment), generator=FakeGenerator(generation))
     result = bot.handle_message("refund?")
@@ -186,7 +186,7 @@ def test_result_carries_upstream_structured_data():
     assert result.citations_used == ["FAQ-02"]
     assert result.allowed_citations == ["FAQ-02", "POLICY-02"]
     assert result.provider == "groq"
-    assert result.model == "llama-3.3-70b-versatile"
+    assert result.model == "openai/gpt-oss-120b"
     assert result.conflict_topics == ["refund_window"]
     assert result.succeeded is True
     assert result.failed is False
@@ -565,3 +565,75 @@ def test_end_to_end_full_multi_turn_session(real_retriever):
     # After reset the refund topic is gone from the prepared query.
     assert "refund" not in r3.prepared_query.lower()
     assert bot.conversation.turn_count == 2
+
+# --------------------------------------------------------------------------- #
+# Security turns must not contaminate later, unrelated turns
+# --------------------------------------------------------------------------- #
+def test_security_turn_does_not_contaminate_next_turn_state(real_retriever):
+    """A prior CVV turn must not force a later, unrelated turn into security."""
+    bot = make_real_assistant(real_retriever)
+
+    first = bot.handle_message("Can I send you my CVV?")
+    assert first.state == "security_escalation"
+    assert first.security_triggered is True
+
+    second = bot.handle_message("What browsers are supported?")
+    assert second.security_triggered is False
+    assert second.state != "security_escalation"
+    # the sensitive prior turn is not carried into the prepared query
+    assert "cvv" not in second.prepared_query.lower()
+
+
+def test_laptop_download_after_cvv_turn_is_not_mixed(real_retriever):
+    """Neither the assessed query nor the model-visible context may carry the CVV turn."""
+    captured = {}
+
+    def recording_generator(query, assessment, *, provider=None, conversation_block=None):
+        captured["query"] = query
+        captured["block"] = conversation_block
+        return generate(
+            query, assessment, provider=provider, conversation_block=conversation_block
+        )
+
+    bot = Assistant(
+        retriever=real_retriever,
+        provider=FakeProvider(default_response="(offline fake answer)"),
+        assessor=assess_evidence,
+        generator=recording_generator,
+    )
+
+    bot.handle_message("Can I send you my CVV?")
+    result = bot.handle_message("Can I download courses on my laptop?")
+
+    assert result.security_triggered is False
+    assert result.state != "security_escalation"
+    assert "cvv" not in captured["query"].lower()
+    assert "cvv" not in (captured["block"] or "").lower()
+    assert "cvv" not in result.answer.lower()
+
+
+def test_current_security_question_is_not_filtered(real_retriever):
+    """Exclusion applies only to prior context: a security question asked now still escalates."""
+    bot = make_real_assistant(real_retriever)
+    bot.handle_message("What browsers are supported?")  # benign prior turn
+    result = bot.handle_message("Can I send you my CVV?")
+
+    assert result.security_triggered is True
+    assert result.state == "security_escalation"
+    assert result.routing == "escalate"
+
+
+def test_laptop_download_then_browser_is_a_fresh_topic(real_retriever):
+    """A browser question after a laptop/download turn must not inherit that topic."""
+    bot = make_real_assistant(real_retriever)
+
+    first = bot.handle_message("can i download courses on my laptop?")
+    assert first.prepared_query == "can i download courses on my laptop?"
+
+    second = bot.handle_message("what browsers are supported?")
+    # the new question is carried through verbatim, with no laptop/download context
+    assert second.prepared_query == "what browsers are supported?"
+    assert "download" not in second.prepared_query.lower()
+    assert "laptop" not in second.prepared_query.lower()
+    # the offline/download contradiction family must not be pulled in
+    assert "offline_downloads" not in second.conflict_topics

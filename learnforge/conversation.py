@@ -8,7 +8,7 @@ Conversation history is contextual input, NOT KB evidence.
 """
 from __future__ import annotations
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import Callable, List, Optional, Sequence
 
 DEFAULT_MAX_TURNS = 20
 FOLLOWUP_USER_TURNS = 3
@@ -57,6 +57,33 @@ def validate_message(message: str) -> None:
     non-``str``, or empty/whitespace-only) or ``TypeError``.
     """
     _validate_message(message)
+
+
+def _shares_topic_with_context(
+    query: str,
+    messages: Sequence[str],
+    topics_of: Optional[Callable[[str], set]] = None,
+) -> bool:
+    """True unless ``query`` is clearly about a different topic than ``messages``.
+
+    A "clearly new topic" names its own recognized topic while the carried messages
+    name only *other* topics (e.g. a laptop/download turn followed by a browser
+    question). Such a query must not inherit the unrelated prior context. A query
+    with no recognized topic of its own (e.g. "what about 20 days?") is treated as
+    a continuation and keeps the context. Without ``topics_of`` the historical
+    always-carry behaviour is preserved.
+    """
+    if topics_of is None:
+        return True
+    current = topics_of(query)
+    if not current:
+        return True
+    prior: set = set()
+    for message in messages:
+        prior |= topics_of(message)
+    if not prior:
+        return True
+    return not prior.isdisjoint(current)
 
 
 @dataclass
@@ -116,12 +143,33 @@ class Conversation:
             msgs = msgs[-n:]
         return list(reversed(msgs))
 
-    def prepare_query(self, query: str, max_user_context: int = FOLLOWUP_USER_TURNS) -> str:
+    def prepare_query(
+        self,
+        query: str,
+        max_user_context: int = FOLLOWUP_USER_TURNS,
+        *,
+        exclude: Optional[Callable[[str], bool]] = None,
+        topics_of: Optional[Callable[[str], set]] = None,
+    ) -> str:
         """Prepare retrieval query from current query + recent user messages.
         Deterministic, no LLM/external call. Returns query as-is when empty.
+
+        ``exclude`` is an optional predicate applied to each *prior* user message;
+        a message for which it returns True is dropped from the carried context (M6
+        uses this to keep security-sensitive turns from bleeding into later turns).
+        The current ``query`` is never filtered.
+
+        ``topics_of`` optionally maps a message to the set of recognized topics it
+        names. When the current ``query`` names a topic disjoint from every topic in
+        the carried messages, the prior context is dropped, so a clearly new question
+        cannot inherit an unrelated previous topic.
         """
         _validate_message(query)
         recent = self.get_recent_user_messages(max_user_context)
+        if exclude is not None:
+            recent = [message for message in recent if not exclude(message)]
+        if not _shares_topic_with_context(query, recent, topics_of):
+            recent = []
         if not recent:
             return query.strip()
         context = " ".join(recent)
@@ -130,14 +178,38 @@ class Conversation:
             prepared = f"{context[:1200]} ... {query}"
         return prepared.strip()
 
-    def build_context_block(self, max_turns: int = 0, max_chars_per_message: int = 600) -> str:
+    def build_context_block(
+        self,
+        max_turns: int = 0,
+        max_chars_per_message: int = 600,
+        *,
+        exclude: Optional[Callable[[str], bool]] = None,
+        query: Optional[str] = None,
+        topics_of: Optional[Callable[[str], set]] = None,
+    ) -> str:
         """Build delimited <conversation_context> block. Returns '' if no history.
         max_turns=0 means use self.max_turns.
+
+        ``exclude`` is an optional predicate applied to each turn's content; a turn
+        for which it returns True is omitted from the block (M6 uses this to keep
+        security-sensitive turns out of the model prompt).
+
+        ``query``/``topics_of`` optionally suppress the whole block when the current
+        query names a topic disjoint from the carried turns, so a clearly new
+        question is not shown unrelated prior context.
         """
         if not self.turns:
             return ""
         limit = self.max_turns if max_turns <= 0 else min(max_turns, self.max_turns)
         recent = self.get_recent_turns(limit)
+        if exclude is not None:
+            recent = [turn for turn in recent if not exclude(turn["content"])]
+        if query is not None and not _shares_topic_with_context(
+            query, [turn["content"] for turn in recent], topics_of
+        ):
+            recent = []
+        if not recent:
+            return ""
         lines: List[str] = [
             "<conversation_context>",
             "CONVERSATION HISTORY (context only - NOT KB evidence):",
