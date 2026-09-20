@@ -17,8 +17,7 @@ python -m learnforge.cli --provider fake --once "What is the refund policy?"   #
 python -m learnforge.evaluation          # 28-case behavioral benchmark, ~2 s
 ```
 
-*Fully offline by default; the real LLM (`--provider real`) is optional and needs
-`GROQ_API_KEY`. See [Setup & running](#setup--running) and the table of contents below.*
+Fully offline tests and benchmark are provided for reproducibility. The real Groq LLM provider is also implemented and was tested separately using a live `GROQ_API_KEY`.
 
 The guiding principle of the whole design:
 
